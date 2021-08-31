@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <title>PF Character Sheet</title>
+    </head>
+    <body>
+        <p>
+            Versions:
+            Node.js=<span id="node-version"></span>,
+            Chromium=<span id="chrome-version"></span>,
+            Electron=<span id="electron-version"></span>
+        </p>
+
+        <h1>Pathfinder Character Sheet</h1>
+
+        <form id="bio-form">
+            <label for="character-name">Character name:</label>
+            <input id="character-name" name="character-name" type="text">
+
+            <label for="alignment">Alignment:</label>
+            <select id="alignment" name="alignment">
+                <option value="lawful-good">Lawful Good</option>
+                <option value="neutral-good">Neutral Good</option>
+                <option value="chaotic-good">Chaotic Good</option>
+                <option value="lawful-neutral">Lawful Neutral</option>
+                <option value="true-neutral">True Neutral</option>
+                <option value="chaotic-neutral">Chaotic Neutral</option>
+                <option value="lawful-good">Lawful Evil</option>
+                <option value="neutral-good">Neutral Evil</option>
+                <option value="chaotic-good">Chaotic Evil</option>
+            </select>
+        </form>
+
+        <label for="attributes">Attributes:</label><br>
+        <form id="attributes">
+            <label for="str">STR</label>
+            <input id="att-str" name="str" type="number" min=0 max=99 required=true>
+            <input id="str-mod" name="str" type="number" readonly=true><br>
+
+            <label for="dex">DEX</label>
+            <input id="att-dex" name="dex" type="number" min=0 max=99 required=true>
+            <input id="dex-mod" name="dex" type="number" readonly=true><br>
+
+            <label for="con">CON</label>
+            <input id="att-con" name="con" type="number" min=0 max=99 required=true>
+            <input id="con-mod" name="con" type="number" readonly=true><br>
+
+            <label for="int">INT</label>
+            <input id="att-int" name="int" type="number" min=0 max=99 required=true>
+            <input id="int-mod" name="int" type="number" readonly=true><br>
+
+            <label for="wis">WIS</label>
+            <input id="att-wis" name="wis" type="number" min=0 max=99 required=true>
+            <input id="wis-mod" name="wis" type="number" readonly=true><br>
+
+            <label for="cha">CHA</label>
+            <input id="att-cha" name="cha" type="number" min=0 max=99 required=true>
+            <input id="cha-mod" name="cha" type="number" readonly=true><br>
+        </form>
+            
+        <label for="attacks">Attacks:</label>
+        <form id="attacks">
+            <table id="attacks-table">
+                <tr>
+                    <th>Attack name</th>
+                    <th>Attack Att.</th>
+                    <th>Attack Bonus</th>
+                    <th>Damage Dice</th>
+                    <th>+</th>
+                    <th>Damage Att.</th>
+                    <th>+</th>
+                    <th>Damage</th>
+                    <th>+</th>
+                    <th>Non-crit Damage</th>
+                    <th>Critical chance</th>
+                    <th>Critical multiplier</th>
+                    <th>Damage Types</th>
+                    <th>Roll command</th>
+                </tr>
+                <tr id="attack-1" name="attack-1">
+                    <td>
+                        <input id="attack-1-name" name="attack-1-name" type="text">
+                    </td>
+                    <td>
+                        <select id="attack-1-to-hit-attribute" name="attack-1-to-hit-attribute">
+                            <option value="str">STR</option>
+                            <option value="dex">DEX</option>
+                            <option value="none">N/A</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="attack-1-to-hit-bonus" name="attack-1-to-hit-bonus" type="number" min=-99 max=99>
+                    </td>
+                    <td>
+                        <input id="attack-1-damage-dice-count" name="attack-1-damage-dice-count" type="number" min=0 max=99>
+                        <span>d</span>
+                        <select id="attack-1-damage-dice-size" name="attack-1-damage-dice-size">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="6">6</option>
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                            <option value="12">12</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span>+</span>
+                    </td>
+                    <td>
+                        <select id="attack-1-damage-multiplier" name="attack-1-damage-multiplier">
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                        </select>
+                        <span>x</span>
+                        <select id="attack-1-damage-attribute" name="attack-1-damage-attribute">
+                            <option value="str">STR</option>
+                            <option value="dex">DEX</option>
+                            <option value="none">N/A</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span>+</span>
+                    </td>
+                    <td>
+                        <input id="attack-1-damage-bonus" name="attack-1-damage-bonus" type="number" min=-99 max=99>
+                    </td>
+                    <td>
+                        <span>+</span>
+                    </td>
+                    <td>
+                        <input id="attack-1-non-crit-damage-bonus" name="attack-1-non-crit-damage-bonus" type="number" min=-99 max=99>
+                    </td>
+                    <td>
+                        <input id="attack-1-crit-chance" name="attack-1-crit-chance" type="number" min=0 max=20 value=20>
+                    </td>
+                    <td>
+                        <span>x</span>
+                        <select id="attack-1-crit-multiplier" name="attack-1-crit-multiplier">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="attack-1-damage-types" name="attack-1-damage-types" type="text">
+                    </td>
+                    <td>
+                        <input id="attack-1-roll-command" name="attack-1-roll-command" type="text" readonly=true>
+                    </td>
+                </tr>
+            </table>
+            
+        </form>
+
+        <script type="module" src="./renderer.js"></script>
+    </body>
+</html>
